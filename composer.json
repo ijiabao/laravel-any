@@ -1,0 +1,37 @@
+{
+  "name": "ijiabao/laravel-any",
+  "description": "laravel 开发时常用的轮子",
+  "keywords": [
+    "laravel",
+    "ijiabao"
+  ],
+  "type": "package",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "iJiabao",
+      "email": "ijiabao@qq.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "caouecs/laravel-lang": "^4.0",
+	"barryvdh/laravel-ide-helper": "^2.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ijiabao\\Laravel\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ijiabao\\Laravel\\CommonServiceProvider"
+      ],
+      "aliases": {}
+    }
+  }
+}

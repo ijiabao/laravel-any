@@ -64,6 +64,7 @@ class InitCommand extends Command
     {
         //
         $this->checkSetLang();
+		$this->checkUserModel();
     }
 
     /**

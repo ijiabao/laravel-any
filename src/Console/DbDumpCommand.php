@@ -83,6 +83,7 @@ class DbDumpCommand extends Command
             @mkdir($dir, 0777, true);
             $content = "!.gitignore\n*.bakup\n";
             file_put_contents($dir.'/.gitignore', $content);
+			$this->info("created .gitignore file");
         }
     }
 
@@ -98,7 +99,7 @@ class DbDumpCommand extends Command
         @mkdir(dirname($file), 0777, true);
 
         $this->info('正在备份...');
-        @exec("{$cmd} > '{$file}'", $output, $ret);
+        @exec("{$cmd} > \"{$file}\"", $output, $ret);
 
         if($ret===0){
             $this->info("成功备份: [$file]");
@@ -131,7 +132,7 @@ class DbDumpCommand extends Command
         }
 
         $this->info("正在导入..");
-        @exec("{$cmd} < '{$file}'", $output, $ret);
+        @exec("{$cmd} < \"{$file}\"", $output, $ret);
 
         if($ret===0){
             $this->info("导入成功！");
@@ -154,7 +155,11 @@ class DbDumpCommand extends Command
      * 生成保存目录下的文件
      */
     protected function getSaveFile($filename = null){
-        return $this->getSaveDir() . '/'. ($filename ? $filename : 'all.sql');
+        $filepath = $this->getSaveDir() . '/'. ($filename ? $filename : 'all.sql');
+		if(DIRECTORY_SEPARATOR == "\\"){
+			return str_replace('/', '\\', $filepath);
+		}
+		return $filepath;
     }
 
     /**
